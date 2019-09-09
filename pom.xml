@@ -15,7 +15,7 @@
     </parent>
     <groupId>ru.ico.ltd</groupId>
     <artifactId>sfg-pet-clinic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>sfg-pet-clinic</name>
     <description>Custom Pet Clinic edition</description>
 
@@ -23,8 +23,6 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <dependencies>
-    </dependencies>
 
     <build>
         <plugins>
@@ -32,7 +30,20 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <goals>
+                        install
+                    </goals>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <scm>
+        <developerConnection>scm:git:git@github.com:Anthony17J8/sfg-pet-clinic.git</developerConnection>
+    </scm>
 
 </project>
