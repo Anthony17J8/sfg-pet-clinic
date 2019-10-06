@@ -8,10 +8,12 @@ import ru.ico.ltd.sfgpetclinic.model.Pet;
 import ru.ico.ltd.sfgpetclinic.model.PetType;
 import ru.ico.ltd.sfgpetclinic.model.Speciality;
 import ru.ico.ltd.sfgpetclinic.model.Vet;
+import ru.ico.ltd.sfgpetclinic.model.Visit;
 import ru.ico.ltd.sfgpetclinic.services.OwnerService;
 import ru.ico.ltd.sfgpetclinic.services.PetTypeService;
 import ru.ico.ltd.sfgpetclinic.services.SpecialityService;
 import ru.ico.ltd.sfgpetclinic.services.VetService;
+import ru.ico.ltd.sfgpetclinic.services.VisitService;
 
 import java.time.LocalDate;
 
@@ -26,13 +28,17 @@ public class DataLoader implements CommandLineRunner {
 
     private final SpecialityService specialityService;
 
+    private final VisitService visitService;
+
     @Autowired
     public DataLoader(OwnerService ownerService, VetService vetService,
-                      PetTypeService petTypeService, SpecialityService specialityService) {
+                      PetTypeService petTypeService, SpecialityService specialityService,
+                      VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -95,6 +101,12 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionasCat);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners....");
 
